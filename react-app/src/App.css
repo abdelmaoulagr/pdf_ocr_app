@@ -1,0 +1,48 @@
+/*html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}*/
+.All{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.nav{
+  flex-basis: 20%;
+  background-color: darkgray;
+  height: 100%;
+  display: flex;
+  /*justify-content: center;
+  align-items: center;*/
+}
+.search{
+  flex-basis: 90%;
+  height: 100%;
+  margin-top: 10px;
+  padding-right: 200px;
+  padding-left: 300px;
+  position: sticky;
+}
+.Drawer{
+  flex-basis: 10%;
+  height: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.main{
+  flex-basis: 80%;
+  height: 100%;
+  background-color: lightgray;
+}
+.child-1{
+  overflow-y: scroll;
+  background-color: darkgray
+}
+/*.child22{
+  flex-basis: 15%;
+  width: 90%;
+}*/
