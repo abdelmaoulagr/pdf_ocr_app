@@ -1,20 +1,20 @@
 import "./App.css";
-import SearchBar from "./components/Search";
-import DrawerExample from "./components/Nav";
+import AdminDrawer from "./components/AdminNav";
 import Test from "./components/test";
-import LoiCards from "./components/Output";
+import LoiCards from "./components/AdminOutput";
+import FileInput from "./components/FileInput";
 
-function App() {
+function AddLoi() {
   var Loi = Test();
   return (
     <>
       <div className="All">
         <div className="nav">
           <div className="search">
-            <SearchBar></SearchBar>
+            <FileInput></FileInput>
           </div>
           <div className="Drawer">
-            <DrawerExample></DrawerExample>
+            <AdminDrawer></AdminDrawer>
           </div>
         </div>
         <div className="main">
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default AddLoi;

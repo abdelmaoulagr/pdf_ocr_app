@@ -1,10 +1,10 @@
 import "./App.css";
 import SearchBar from "./components/Search";
-import DrawerExample from "./components/Nav";
+import AdminDrawer from "./components/AdminNav";
 import Test from "./components/test";
-import LoiCards from "./components/Output";
+import LoiCards from "./components/AdminOutput";
 
-function App() {
+function AdminHome() {
   var Loi = Test();
   return (
     <>
@@ -14,7 +14,7 @@ function App() {
             <SearchBar></SearchBar>
           </div>
           <div className="Drawer">
-            <DrawerExample></DrawerExample>
+            <AdminDrawer></AdminDrawer>
           </div>
         </div>
         <div className="main">
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default AdminHome;

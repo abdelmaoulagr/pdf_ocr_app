@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-function DrawerExample() {
+function AdminDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
 
@@ -44,18 +44,32 @@ function DrawerExample() {
           <DrawerBody>
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/adminhome"
+                >
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/file">
-                  File
+                <a className="nav-link" href="/add">
+                  Ajuoter Loi
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/adminhome">
-                  Admin
+                <a className="nav-link" href="/addadmin">
+                  Ajouter Admin
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  List Admin
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Logout
                 </a>
               </li>
             </ul>
@@ -68,4 +82,4 @@ function DrawerExample() {
   );
 }
 
-export default DrawerExample;
+export default AdminDrawer;
