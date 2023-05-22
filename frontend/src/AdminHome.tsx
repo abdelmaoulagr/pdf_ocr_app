@@ -3,9 +3,10 @@ import SearchBar from "./components/Search";
 import AdminDrawer from "./components/AdminNav";
 import Test from "./components/test";
 import LoiCards from "./components/AdminOutput";
+import DataTest from "./components/data_test";
 
 function AdminHome() {
-  var Loi = Test();
+  var Loi = DataTest();
   return (
     <>
       <div className="All">
