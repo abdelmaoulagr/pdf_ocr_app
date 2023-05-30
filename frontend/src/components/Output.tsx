@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardHeader,
@@ -9,8 +10,6 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-import { borderRadius } from "@mui/system";
-import React from "react";
 
 interface LoiCardsProps {
   lois: {
@@ -50,52 +49,71 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
     color: "black",
   };
 
-  return (
-    <div>
-      {lois.map((loi, loiIndex) => (
-        <div
-          key={`loi-${loiIndex}`}
-          style={{ position: "relative", marginBottom: 30 }}
-        >
-          <Card>
-            <CardHeader>
-              <Heading size="lg">Loi n: {loi.loi}</Heading>
-              <div style={copyButtonStyle}>
-                <Button
-                  size="sm"
-                  onClick={() => handleCopyClick(generateOutput(loi))}
-                >
-                  Copy
-                </Button>
-              </div>
-            </CardHeader>
-            <CardBody>
-              {Object.keys(loi).map((articleKey) => {
-                if (articleKey !== "loi") {
-                  return (
-                    <Card
-                      key={`loi-${loiIndex}-section-${articleKey}`}
-                      style={{ marginBottom: 2 }}
-                    >
-                      <CardHeader>
-                        <Heading size="md">{articleKey}</Heading>
-                      </CardHeader>
-                      <CardBody>
-                        <Text pt="2" fontSize="sm">
-                          {loi[articleKey]}
-                        </Text>
-                      </CardBody>
-                    </Card>
-                  );
-                }
-                return null;
-              })}
-            </CardBody>
-          </Card>
-        </div>
-      ))}
-    </div>
-  );
+  const renderLois = () => {
+    if (lois.length === 0) {
+      // Render skeleton or empty state when there are no lois
+      return (
+        <Card>
+          <CardHeader>
+            <Heading size="lg">No lois available</Heading>
+          </CardHeader>
+        </Card>
+      );
+    }
+
+    return lois.map((loi, loiIndex) => (
+      <div
+        key={`loi-${loiIndex}`}
+        style={{ position: "relative", marginBottom: 30 }}
+      >
+        <Card>
+          <CardHeader>
+            <Heading size="lg">Loi n: {loi.loi}</Heading>
+            <div style={copyButtonStyle}>
+              <Button
+                size="sm"
+                onClick={() => handleCopyClick(generateOutput(loi))}
+              >
+                Copy
+              </Button>
+            </div>
+          </CardHeader>
+          <CardBody>
+            {Object.keys(loi).map((articleKey) => {
+              if (articleKey !== "loi") {
+                return (
+                  <Card
+                    key={`loi-${loiIndex}-section-${articleKey}`}
+                    style={{ marginBottom: 2 }}
+                  >
+                    <CardHeader>
+                      <Heading size="md">{articleKey}</Heading>
+                      <div style={copyButtonStyle}>
+                        <Button
+                          size="sm"
+                          onClick={() => handleCopyClick(loi[articleKey])}
+                        >
+                          Copy
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardBody>
+                      <Text pt="2" fontSize="md">
+                        {loi[articleKey]}
+                      </Text>
+                    </CardBody>
+                  </Card>
+                );
+              }
+              return null;
+            })}
+          </CardBody>
+        </Card>
+      </div>
+    ));
+  };
+
+  return <div>{renderLois()}</div>;
 };
 
 export default LoiCards;

@@ -1,31 +1,25 @@
 import "./AddAdmin.css";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Input,
-} from "@chakra-ui/react";
+import AdminDrawer from "./components/AdminNav";
+import AddAdminComponent from "./components/AddAdminComponent";
 
 function AddAdmin() {
   return (
     <>
-      <div className="body">
-        <center>
-          <h1>Add Admin</h1>
-        </center>
-        <FormControl>
-          <FormLabel>
-            <h5>First Name</h5>
-          </FormLabel>
-          <Input placeholder="First name" id="input" />
-          <FormLabel>
-            <h5>Last Name</h5>
-          </FormLabel>
-          <Input placeholder="Last name" id="input" />
-        </FormControl>
+      <div className="All">
+        <div className="nav">
+          <div className="search"></div>
+          <div className="Drawer">
+            <AdminDrawer></AdminDrawer>
+          </div>
+        </div>
+        <div className="main">
+          <div className="child-1">
+            <AddAdminComponent></AddAdminComponent>
+          </div>
+        </div>
       </div>
     </>
   );
 }
+
 export default AddAdmin;

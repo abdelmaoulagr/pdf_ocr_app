@@ -189,7 +189,7 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
                               <>
                                 <Editable defaultValue={value}>
                                   <EditablePreview />
-                                  <EditableInput />
+                                  <EditableTextarea />
                                 </Editable>
                               </>
                             )}

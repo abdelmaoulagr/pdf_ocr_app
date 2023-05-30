@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
 
-function LoginPopUp() {
+function LoginForm() {
   return (
     <Card variant={"elevated"}>
       <CardHeader>
@@ -29,4 +29,4 @@ function LoginPopUp() {
     </Card>
   );
 }
-export default LoginPopUp;
+export default LoginForm;

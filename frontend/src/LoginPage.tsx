@@ -1,4 +1,4 @@
-import LoginPopUp from "./components/LoginPopUp";
+import LoginPopUp from "./components/LoginForm";
 import "./LoginPage.css";
 
 function LoginPage() {

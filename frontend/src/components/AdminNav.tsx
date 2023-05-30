@@ -8,16 +8,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
   useDisclosure,
-  Box,
-  FormLabel,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Select,
-  Stack,
-  Textarea,
 } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -54,21 +45,21 @@ function AdminDrawer() {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/add">
-                  Ajuoter Loi
+                  Add Loi
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/addadmin">
-                  Ajouter Admin
+                  Add Admin
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  List Admin
+                  Admin List
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/login">
                   Logout
                 </a>
               </li>
