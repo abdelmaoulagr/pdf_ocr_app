@@ -3,9 +3,13 @@ import AdminDrawer from "./components/AdminNav";
 import Test from "./components/test";
 import LoiCards from "./components/AdminOutput";
 import FileInput from "./components/FileInput";
+import { listOfIngredients } from "./components/FileInput";
+
 
 function AddLoi() {
-  var Loi = Test();
+  var Loi =Test();
+  // if(listOfIngredients[0]) Loi=[listOfIngredients[0]['data']];
+  // else Loi=Test()
   return (
     <>
       <div className="All">

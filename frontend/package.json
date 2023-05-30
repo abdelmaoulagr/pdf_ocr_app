@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.10.8",
     "@mui/base": "^5.0.0-alpha.128",
     "@mui/system": "^5.12.3",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "browserslist": "^4.21.5",
     "framer-motion": "^10.12.7",
