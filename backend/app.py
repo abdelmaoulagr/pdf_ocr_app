@@ -2,9 +2,14 @@ import codecs
 import json
 from flask import Flask, request , jsonify
 from flask_cors import CORS , cross_origin
+<<<<<<< HEAD
 from pymongo import MongoClient
 import getLoi as loi
 import base64
+=======
+# import getLoi as loi
+#import base64
+>>>>>>> 13f751d9 (i do not know what this button do)
 
 
 app = Flask(__name__)
@@ -47,12 +52,12 @@ def get_loi():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_data():
-    file_64_encode=request.json['File']
+    """file_64_encode=request.json['File']
 
     # convert base64 to PDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
     file_result = open('file_decoded.pdf', 'wb') 
-    file_result.write(file_64_decode)
+    file_result.write(file_64_decode)"""
 
 
     
