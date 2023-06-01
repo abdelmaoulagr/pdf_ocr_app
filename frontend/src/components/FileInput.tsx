@@ -28,9 +28,14 @@ function FileInput({ handleRefresh }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     createPost(postFile);
     handleRefresh(true);
   };
+=======
+    createPost(postFile)
+    }
+>>>>>>> 34be31dc (search bar query)
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];

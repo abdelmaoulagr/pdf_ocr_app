@@ -1,7 +1,10 @@
 import "./App.css";
 import SearchBar from "./components/Search";
 import DrawerExample from "./components/Nav";
+<<<<<<< HEAD
 import DataTest from "./components/data_test";
+=======
+>>>>>>> 34be31dc (search bar query)
 import LoiCards from "./components/Output";
 function App() {
   var Loi =DataTest() ;

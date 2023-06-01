@@ -8,7 +8,7 @@ function DataTest(){
             try {
                 fetch("http://localhost:5000/lois")
                 .then(res =>res.json())
-                .then(data=>setDatasets(data.data[0]))
+                .then(data=>setDatasets(data[0]))
             } catch (err) {
                 console.log(err);
             }

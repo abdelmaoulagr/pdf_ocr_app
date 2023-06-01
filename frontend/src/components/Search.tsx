@@ -7,6 +7,18 @@ function SearchBar() {
       ?.value;
     console.log("Search query:", query);
     // Add your code here to handle the search request
+    fetch('http://127.0.0.1:5000/lois', {
+      method: 'POST',
+      headers: {
+          Accept: 'application/form-data',
+          'Content-Type': 'application/json',
+          },
+      body: JSON.stringify({searchBar:query})
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+      });
   };
 
   return (
