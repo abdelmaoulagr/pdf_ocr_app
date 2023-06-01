@@ -4,18 +4,23 @@ import Test from "./components/test";
 import LoiCards from "./components/AdminOutput";
 import FileInput from "./components/FileInput";
 import { listOfIngredients } from "./components/FileInput";
-
+import { useState } from "react";
 
 function AddLoi() {
-  var Loi =Test();
-  // if(listOfIngredients[0]) Loi=[listOfIngredients[0]['data']];
-  // else Loi=Test()
+  const [loading, setLoading] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleRefresh = (isLoaded: any) => {
+    if (isLoaded) {
+      setRefreshKey((prevKey) => prevKey + 1);
+    }
+  };
   return (
     <>
       <div className="All">
         <div className="nav">
           <div className="search">
-            <FileInput></FileInput>
+            <FileInput handleRefresh={handleRefresh}></FileInput>
           </div>
           <div className="Drawer">
             <AdminDrawer></AdminDrawer>
@@ -23,7 +28,11 @@ function AddLoi() {
         </div>
         <div className="main">
           <div className="child-1">
-            <LoiCards lois={Loi} />
+            {listOfIngredients.length != 0 ? (
+              <LoiCards key={refreshKey} lois={listOfIngredients[0]["data"]} />
+            ) : (
+              <p>List is empty</p>
+            )}
           </div>
         </div>
       </div>

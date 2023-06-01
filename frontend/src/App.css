@@ -40,7 +40,7 @@
 }
 .child-1{
   overflow-y: scroll;
-  background-color: darkgray
+  padding: 10px;
 }
 /*.child22{
   flex-basis: 15%;

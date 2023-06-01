@@ -15,6 +15,7 @@ export const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/home" element={<App />} />
           <Route path="/file" element={<FilePage />} />
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/add" element={<AddLoi />} />

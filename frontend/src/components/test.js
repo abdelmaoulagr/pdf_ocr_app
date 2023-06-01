@@ -1,4 +1,4 @@
-
+import listOfIngredients from "./FileInput"
 function Test(){
     let y=[{"loi": "119-05",
               "article_1":"the whole thing",
@@ -10,6 +10,9 @@ function Test(){
               "article_7":"the whole thing"
             },
         ]
-    return y
+    if (listOfIngredients.length == 0)
+        return y;
+    else 
+        return listOfIngredients[0]["data"];
 }
 export default Test;
