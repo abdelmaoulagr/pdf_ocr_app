@@ -3,11 +3,15 @@ import json
 from flask import Flask, request , jsonify
 from flask_cors import CORS , cross_origin
 <<<<<<< HEAD
+<<<<<<< HEAD
 from pymongo import MongoClient
 import getLoi as loi
 import base64
 =======
 # import getLoi as loi
+=======
+import getLoi as loi
+>>>>>>> 9efcd2fb (dd)
 #import base64
 >>>>>>> 13f751d9 (i do not know what this button do)
 
