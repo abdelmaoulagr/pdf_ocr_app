@@ -5,7 +5,10 @@ import FileInput from "./components/FileInput";
 import FileOutput from "./components/FileOutput";
 
 const FilePage: React.FC = () => {
-  let data;
+  let data={
+    'title':'Text from file',
+    'text':'Au sens de la prsente loi, on entend par.... '
+  };
   return (
     <>
       <div className="All">

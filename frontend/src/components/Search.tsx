@@ -6,7 +6,7 @@ function SearchBar() {
     const query = (document.getElementById("search-input") as HTMLInputElement)
       ?.value;
     console.log("Search query:", query);
-    // Add your code here to handle the search request
+    // fetch function to get data from Flask
     fetch('http://127.0.0.1:5000/lois', {
       method: 'POST',
       headers: {
@@ -19,6 +19,18 @@ function SearchBar() {
       .then((data) => {
         console.log(data)
       });
+
+    //for testing ur frontend code, if u text "hey" u'll find in response 409 message is {"error": 'Not Found'}
+    // if u input any other thing u'll get some test data in array in console ofc (-_-). 
+    // in use home page u'll find just 'Article 1' good luck bro
+    //Idea : i prefer to use listOfSearch[] like FileInput.tsx 
+    /*
+    Note that: 
+        data=[
+                {'loi':'l9oraidise','art 1':'dir m3ak abinno'},
+                {'loi':'lbokhrissi','art 1':'l7aj l3thmani'}
+              ]
+    */
   };
 
   return (

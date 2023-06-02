@@ -18,10 +18,7 @@
     "@mui/base": "^5.0.0-alpha.128",
     "@mui/system": "^5.12.3",
     "axios": "^1.4.0",
-<<<<<<< HEAD
     "bcrypt": "^5.1.0",
-=======
->>>>>>> 34be31dc (search bar query)
     "bootstrap": "^5.2.3",
     "browserslist": "^4.21.5",
     "cors": "^2.8.5",

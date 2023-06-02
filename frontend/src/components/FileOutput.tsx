@@ -9,6 +9,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
+
 function FileOutput({ data }) {
   const { title, text } = data;
 
