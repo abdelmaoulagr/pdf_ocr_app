@@ -17,6 +17,7 @@ function AddAdminComponent() {
 
   const handleAdd = () => {
     // Add button logic here
+    console.log(firstNameRef);
   };
 
   const handleCancel = () => {
