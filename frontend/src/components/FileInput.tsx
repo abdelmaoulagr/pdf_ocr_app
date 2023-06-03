@@ -3,7 +3,7 @@ import axios from "axios";
 import AddLoi from "../AddLoi";
 import LoiCards from "./AdminOutput";
 
-const url = "http://localhost:5000/add";
+let url = "http://localhost:5000/addLoi";
 
 export const listOfIngredients = [];
 const createPost = async (newFile) => {

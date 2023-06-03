@@ -7,6 +7,33 @@ import {
   Input,
 } from "@chakra-ui/react";
 import PasswordInput from "./PasswordInput";
+//function to add admin ,i need password bro 
+// don't f**king touch this function
+const addadmin = async (first_N,last_N ,login,email,phone) => {
+  await fetch("http://localhost:5000/register", {
+    method: "POST",
+    headers: {
+      Accept: "application/form-data",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      firstName:first_N,
+      lastName:last_N,
+      login:login,
+      email:email,
+      phoneNumber:phone
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      
+      // listOfIngredients.push(data);
+    })
+    // .then(() => {
+    //   console.log(listOfIngredients[0]["data"]);
+    // });
+};
 
 function AddAdminComponent() {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -14,11 +41,26 @@ function AddAdminComponent() {
   const loginRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
-
+  // password winooo winooo !!
+  // 
   const handleAdd = () => {
     // Add button logic here
-    console.log(firstNameRef);
-  };
+    console.log({
+      firstName:firstNameRef.current!.value,
+      lastName:lastNameRef.current!.value,
+      login:loginRef.current!.value,
+      email:emailRef.current!.value,
+      phoneNumber:phoneNumberRef.current!.value
+    });
+
+    // arbab back end mya mya bass we need passowrd
+    addadmin(firstNameRef.current!.value,
+      lastNameRef.current!.value,
+      loginRef.current!.value,
+      emailRef.current!.value,
+      phoneNumberRef.current!.value);
+  }
+    
 
   const handleCancel = () => {
     firstNameRef.current!.value = "";

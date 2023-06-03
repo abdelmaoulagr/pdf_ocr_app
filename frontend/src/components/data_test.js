@@ -6,7 +6,7 @@ function DataTest(){
         // Using fetch to fetch the api from 
             // flask server it will be redirected to proxy
             try {
-                fetch("http://localhost:5000/lois")
+                fetch("http://localhost:5000/search")
                 .then(res =>res.json())
                 .then(data=>setDatasets(data[0]))
             } catch (err) {

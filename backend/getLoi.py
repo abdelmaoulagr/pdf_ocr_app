@@ -84,6 +84,12 @@ def Loi_to_dict(LoiNum , titleLoi,Article):
         data[f"Article {art+1}"]=Article[art]
     return data
 
-def text_to_dict(testLoi):
+def text_to_dict(text):
     '''
+    convert txt to dict
     '''
+    data={
+    'title':'Text Of Your File',
+    'text':text
+    }
+    return data

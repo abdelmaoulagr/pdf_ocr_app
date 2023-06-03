@@ -7,7 +7,7 @@ function SearchBar() {
       ?.value;
     console.log("Search query:", query);
     // fetch function to get data from Flask
-    fetch('http://127.0.0.1:5000/lois', {
+    fetch('http://127.0.0.1:5000/search', {
       method: 'POST',
       headers: {
           Accept: 'application/form-data',

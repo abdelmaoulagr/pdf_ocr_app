@@ -1,6 +1,6 @@
 import codecs
 import json
-from flask import Flask, request , jsonify
+from flask import Flask, request , jsonify,session
 from flask_cors import CORS , cross_origin
 import pymongo
 from pymongo import MongoClient
@@ -29,9 +29,9 @@ def OCR():
     articles=loi.Articles(text_loi)
     return loi.Loi_to_dict(loi_num,titre_loi,articles)
 
-
-@app.route('/lois',methods=['GET', 'POST'])
-def get_loi():
+# Search bar
+@app.route('/search',methods=['GET', 'POST'])
+def search_loi():
 
     if  request.method == 'GET':
         # Get data from DB
@@ -74,20 +74,38 @@ def get_loi():
                 )
             return response
         
+# User File
+@app.route('/userFile', methods=['GET', 'POST'])
+def ocr_file():
+    file_64_encode=request.json['File']
 
+    # convert base64 to registerPDF file
+    file_64_decode = base64.b64decode(file_64_encode["File"]) 
+    file_result = open('file_decoded.pdf', 'wb') 
+    file_result.write(file_64_decode)
 
+    file_data=loi.pdf_to_text("/home/abdelmaoula/Documents/LP/Stage/pdf_ocr_app/file_decoded.pdf")
+    file_text=loi.text_to_dict(file_data)
 
-@app.route('/add', methods=['GET', 'POST'])
-def add_data():
+    response = app.response_class(
+        response=json.dumps(file_text),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
+
+# Ajouter Loi
+@app.route('/addLoi', methods=['GET', 'POST'])
+def ocr_loi():
     """file_64_encode=request.json['File']
 
-    # convert base64 to PDF file
+    # convert base64 to registerPDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
     file_result = open('file_decoded.pdf', 'wb') 
     file_result.write(file_64_decode)"""
 
 
-    
+    # loi_data=OCR()
     loi_data={
             
     "data":[{"loi": "n\u00b0 80-21: portant cr\u00e9ation du Registre National Agricole",
@@ -106,7 +124,53 @@ def add_data():
     )
     return response
 
+# Admin collection
+adminDb = db.admin
+#Register Admin
+@app.route('/register',methods=['POST'])
+def register_user():
+    user_data = request.get_json()
+
+    # Check if the user already exists
+    # if adminDb.find_one({'login': user_data['login']}):
+    #     return jsonify({'message': 'Username already exists'})
+
+    # Insert the user data into the collection
+    # adminDb.insert_one(user_data)
+
+    # return jsonify({'message': 'User registered successfully'})
+    return jsonify('From Flask',user_data)
+
+    
+    # session["user_id"] = new_user.id
+
+    # return jsonify({
+    #     "id": new_user.id,
+    #     "email": new_user.email
+    # })
+
+#login backend
+@app.route("/login", methods=["POST"])
+def login_user():
+    login = request.json["login"]
+    password = request.json["pass"]
+
+    # Check if the username and password match in the database
+    user = adminDb.find_one({'username': username, 'password': password})
 
 
+    if user is None:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    # if not user.passward:
+    #     return jsonify({"error": "Unauthorized"}), 401
+    
+    # session["user_id"] = user['_id']
+
+    return jsonify(user)
+    # {
+    #     "id": user.id,
+    #     "email": user.email
+    # }
 if __name__ == '__main__':
 	app.run(debug=True)
