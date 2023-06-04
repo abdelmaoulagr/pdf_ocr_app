@@ -64,8 +64,16 @@ def search_loi():
                     "Article 2": "La Fondation a pour objet la cr\u00e9ation, la promotion\net la gestion des projets visant \u00e0 r\u00e9aliser des \u0153uvres sociales\nau profit des fonctionnaires de la Direction g\u00e9n\u00e9rale de la\nprotection civile et des services ext\u00e9rieurs qui en rel\u00e8vent ainsi\nqu\u2019\u00e0 leurs conjoints et leurs enfants.",
                     "Article 18": "Chaque commission r\u00e9gionale de suivi est compos\u00e9e\nd\u2019un pr\u00e9sident, nomm\u00e9 par le conseil d'orientation et de\ncontr\u00f4le, de trois membres repr\u00e9sentant l'Administration\nainsi que de trois membres repr\u00e9sentant les fonctionnaires,\nd\u00e9sign\u00e9s \u00e9galement par le conseil d'orientation et de contr\u00f4le\nsur proposition du responsable r\u00e9gional de la protection civile\nconcern\u00e9."
                     }]
+        errorData=[{
+             "loi":"not found"
+        }]
         if searchText=='hey':
-                return jsonify({"error": 'Not Found'}), 409
+                response = app.response_class(
+                response=json.dumps(errorData),
+                status=200,
+                mimetype='application/json'
+                )
+                return response
         else: 
             response = app.response_class(
                 response=json.dumps(searchData),
