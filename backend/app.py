@@ -146,14 +146,14 @@ def register_user():
     user_data = request.get_json()
 
     # Check if the user already exists
-    # if adminDb.find_one({'login': user_data['login']}):
-    #     return jsonify({'message': 'Username already exists'})
+    if adminDb.find_one({'login': user_data['login']}):
+        return jsonify({'message': 'Username already exists'})
 
     # Insert the user data into the collection
-    # adminDb.insert_one(user_data)
+    adminDb.insert_one(user_data)
 
-    # return jsonify({'message': 'User registered successfully'})
-    return jsonify('From Flask',user_data)
+    return jsonify({'message': 'User registered successfully'})
+    # return jsonify('From Flask',user_data)
 
     
     # session["user_id"] = new_user.id

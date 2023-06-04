@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 //function to add admin ,i need password bro
 // don't f**king touch this function
-const addadmin = async (first_N, last_N, login, email, phone) => {
+const addadmin = async (first_N, last_N, login,pass, email, phone) => {
   await fetch("http://localhost:5000/register", {
     method: "POST",
     headers: {
@@ -21,6 +21,7 @@ const addadmin = async (first_N, last_N, login, email, phone) => {
       firstName: first_N,
       lastName: last_N,
       login: login,
+      pass: pass,
       email: email,
       phoneNumber: phone,
     }),
@@ -45,24 +46,23 @@ function AddAdminComponent() {
   const passRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
-  // password winooo winooo !!
   //
   const handleAdd = () => {
     // Add button logic here
-    console.log({
-      firstName: firstNameRef.current!.value,
-      lastName: lastNameRef.current!.value,
-      login: loginRef.current!.value,
-      password: passRef.current!.value,
-      email: emailRef.current!.value,
-      phoneNumber: phoneNumberRef.current!.value,
-    });
+    // console.log({
+    //   firstName: firstNameRef.current!.value,
+    //   lastName: lastNameRef.current!.value,
+    //   login: loginRef.current!.value,
+    //   password: passRef.current!.value,
+    //   email: emailRef.current!.value,
+    //   phoneNumber: phoneNumberRef.current!.value,
+    // });
 
-    // arbab back end mya mya bass we need passowrd
     addadmin(
       firstNameRef.current!.value,
       lastNameRef.current!.value,
       loginRef.current!.value,
+      passRef.current!.value,
       emailRef.current!.value,
       phoneNumberRef.current!.value
     );
