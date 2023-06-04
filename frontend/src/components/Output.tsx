@@ -31,7 +31,7 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
   };
 
   const generateOutput = (loi: any) => {
-    let output = `Loi n: ${loi.loi}\n\n`;
+    let output = `Loi ${loi.loi}\n\n`;
 
     Object.keys(loi).forEach((key) => {
       if (key !== "loi") {
@@ -68,7 +68,7 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
       >
         <Card>
           <CardHeader>
-            <Heading size="lg">Loi n: {loi.loi}</Heading>
+            <Heading size="lg">Loi {loi.loi}</Heading>
             <div style={copyButtonStyle}>
               <Button
                 size="sm"
