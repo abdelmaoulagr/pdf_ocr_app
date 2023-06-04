@@ -3,29 +3,14 @@ import axios from "axios";
 import AddLoi from "../AddLoi";
 import LoiCards from "./AdminOutput";
 
-let url = "http://localhost:5000/addLoi";
+let urlT = "http://localhost:5000/addLoi";
 
 export const listOfIngredients = [];
-const createPost = async (newFile) => {
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/form-data",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ File: newFile }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      listOfIngredients.push(data);
-    })
-    .then(() => {
-      console.log(listOfIngredients[0]["data"]);
-    });
-};
-function FileInput({ handleRefresh }) {
+function FileInput({ handleRefresh, url }) {
   const [postFile, setPostFile] = useState({ File: "" });
-
+  if (url != urlT) {
+    urlT = "http://localhost:5000/userFile";
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     createPost(postFile);
@@ -63,6 +48,23 @@ function FileInput({ handleRefresh }) {
 }
 export default FileInput;
 
+const createPost = async (newFile) => {
+  await fetch(urlT, {
+    method: "POST",
+    headers: {
+      Accept: "application/form-data",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ File: newFile }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      listOfIngredients.push(data);
+    })
+    .then(() => {
+      console.log(listOfIngredients[0]["data"]);
+    });
+};
 function convertToBase64(file) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();

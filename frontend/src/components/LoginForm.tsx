@@ -2,46 +2,39 @@ import { Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
 import React, { useRef } from "react";
 
 function LoginForm() {
-  // had joj vars gha zathom kan7amre code dyal AddAdminComponent.tsx
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  let login: string;
+  let pass: string;
 
-  // hadi function dial search jabtha hone (:
-
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    // gad gad hadchi matmsa7 gra 3ad msa7 rani bdlt fiha
-
-    event.preventDefault(); // Prevent form submission
-    /*const login = loginRef.current!.value,
-    const pass = passRef.current!.value,*/
-    //to see data
-    console.log({
-      login: loginRef.current!.value,
-      pass: passRef.current!.value,
-    });
-
-    // fetch function to get data from Flask
-    /* fetch('http://127.0.0.1:5000/login', {
-      method: 'POST',
-      headers: {
-          Accept: 'application/form-data',
-          'Content-Type': 'application/json',
-          },
-      body: JSON.stringify({
-        login:login,
-        pass:pass
-      })
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-      });*/
-  };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      handleLogin(event.currentTarget.form!);
+      formRef.current!.submit();
+      login = loginRef.current!.value;
+      pass = passRef.current!.value;
+      console.log({
+        login: login,
+        pass: pass,
+      });
     }
+    // fetch function to get data from Flask
+    fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        login: login,
+        pass: pass,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   // khasna nzido form hon bach nkhdmo entre key ana knt gail3ndha wajda ,
   // o password khalihli 3adi ana nhashih wla lhala yhashi booh lwa9t ma kain
@@ -51,7 +44,7 @@ function LoginForm() {
         <Heading size="md">Login</Heading>
       </CardHeader>
       <CardBody>
-        <form onSubmit={handleLogin}>
+        <form ref={formRef}>
           <div className="form-floating mb-3">
             <input
               type="text"

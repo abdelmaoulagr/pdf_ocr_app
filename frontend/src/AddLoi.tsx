@@ -10,6 +10,7 @@ function AddLoi() {
   const [loading, setLoading] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
+  let url = "http://localhost:5000/addLoi";
   const handleRefresh = (isLoaded: any) => {
     if (isLoaded) {
       setRefreshKey((prevKey) => prevKey + 1);
@@ -20,7 +21,7 @@ function AddLoi() {
       <div className="All">
         <div className="nav">
           <div className="search">
-            <FileInput handleRefresh={handleRefresh}></FileInput>
+            <FileInput handleRefresh={handleRefresh} url={url}></FileInput>
           </div>
           <div className="Drawer">
             <AdminDrawer></AdminDrawer>

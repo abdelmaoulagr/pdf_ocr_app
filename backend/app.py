@@ -77,7 +77,7 @@ def search_loi():
 # User File
 @app.route('/userFile', methods=['GET', 'POST'])
 def ocr_file():
-    file_64_encode=request.json['File']
+    """file_64_encode=request.json['File']
 
     # convert base64 to registerPDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
@@ -85,7 +85,13 @@ def ocr_file():
     file_result.write(file_64_decode)
 
     file_data=loi.pdf_to_text("/home/abdelmaoula/Documents/LP/Stage/pdf_ocr_app/file_decoded.pdf")
-    file_text=loi.text_to_dict(file_data)
+    file_text=loi.text_to_dict(file_data)"""
+    file_text={
+            
+    "data":{
+        "title": "Text ",
+        "text": "Au sens"}
+        }
 
     response = app.response_class(
         response=json.dumps(file_text),
