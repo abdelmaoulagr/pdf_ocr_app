@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import AddLoi from "../AddLoi";
 import LoiCards from "./AdminOutput";
+import { Spinner } from "@chakra-ui/react";
 
 let urlT = "http://localhost:5000/addLoi";
 
@@ -14,7 +15,8 @@ function FileInput({ handleRefresh, url }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     createPost(postFile);
-    handleRefresh(true);
+    //handleRefresh(true);
+    setTimeout(handleRefresh, 1000, true);
   };
 
   const handleFileUpload = async (e) => {

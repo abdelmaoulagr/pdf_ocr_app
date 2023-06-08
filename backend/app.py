@@ -71,7 +71,6 @@ def search_loi():
             }
             
         ]
-
         return json.dumps(lois) 
     
     else:

@@ -4,7 +4,6 @@ export let listOfSearch = [];
 function SearchBar({ handleRefresh }) {
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleRefresh(true);
     const query = (document.getElementById("search-input") as HTMLInputElement)
       ?.value;
     console.log("Search query:", query);
@@ -22,18 +21,8 @@ function SearchBar({ handleRefresh }) {
         listOfSearch = data;
         console.log(listOfSearch);
       });
-
-    //for testing ur frontend code, if u text "hey" u'll find in response 409 message is {"error": 'Not Found'}
-    // if u input any other thing u'll get some test data in array in console ofc (-_-).
-    // in use home page u'll find just 'Article 1' good luck bro
-    //Idea : i prefer to use listOfSearch[] like FileInput.tsx
-    /*
-    Note that: 
-        data=[
-                {'loi':'l9oraidise','art 1':'dir m3ak abinno'},
-                {'loi':'lbokhrissi','art 1':'l7aj l3thmani'}
-              ]
-    */
+    //handleRefresh(true);
+    setTimeout(handleRefresh, 1000, true);
   };
 
   return (

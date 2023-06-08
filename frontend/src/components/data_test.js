@@ -8,7 +8,7 @@ function DataTest(){
             try {
                 fetch("http://localhost:5000/search")
                 .then(res =>res.json())
-                .then(data=>setDatasets(data[0]))
+                .then(data=>setDatasets(data))
             } catch (err) {
                 console.log(err);
             }
@@ -16,7 +16,7 @@ function DataTest(){
         }, []);
         // console.log('datasets:',datasets)
         // console.log('datasets[0]:',datasets[0])
-        return [datasets];
+        return datasets;
         // let data=[datasets[0]];
 // [{   
 //                 "loi": 'n° 60-18: relative à la Fondation des œuvres sociales \n des fonctionnaires de la direction générale\nde la protection civile',
