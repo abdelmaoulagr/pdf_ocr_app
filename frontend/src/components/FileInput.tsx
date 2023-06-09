@@ -16,7 +16,7 @@ function FileInput({ handleRefresh, url }) {
     e.preventDefault();
     createPost(postFile);
     //handleRefresh(true);
-    setTimeout(handleRefresh, 1000, true);
+    setTimeout(handleRefresh, 5000, true);
   };
 
   const handleFileUpload = async (e) => {

@@ -18,11 +18,11 @@ function SearchBar({ handleRefresh }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        listOfSearch = data;
+        listOfSearch=data;
         console.log(listOfSearch);
       });
     //handleRefresh(true);
-    setTimeout(handleRefresh, 1000, true);
+    setTimeout(handleRefresh, 2000, true);
   };
 
   return (
