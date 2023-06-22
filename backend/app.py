@@ -65,12 +65,13 @@ def search_loi():
                 if field=='loi':matching_fields[field] = value
                 if isinstance(value, str) and searchText in value and 'loi' not in field:
                     matching_fields[field] = value
+            if len(matching_fields)==1: continue
             searchData.append(matching_fields)
         
         errorData=[{
-            "loi":"not found"
+            "loi":"pas trouvé"
         }]
-        if  searchText=='error':
+        if  len(searchData)==0:
                 response = app.response_class(
                 response=json.dumps(errorData),
                 status=200,
