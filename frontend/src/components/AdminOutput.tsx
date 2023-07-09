@@ -35,18 +35,6 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
     Array(lois.length).fill(false)
   );
 
-  const handleCopyClick = (content: string) => {
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
-        console.log("Content copied to clipboard:", content);
-      })
-      .catch((error) => {
-        console.error("Failed to copy content to clipboard:", error);
-      });
-    login;
-  };
-
   const handleEditClick = (index: number) => {
     setEditMode((prevEditMode) => ({ ...prevEditMode, [index]: true }));
 
@@ -129,94 +117,107 @@ const LoiCards: React.FC<LoiCardsProps> = ({ lois }) => {
     right: "90px",
     colorScheme: "red",
   };
+  const renderLois = () => {
+    if (lois.length === 0) {
+      // Render skeleton or empty state when there are no lois
+      return (
+        <Card>
+          <CardHeader>
+            <Heading size="lg">No lois available</Heading>
+          </CardHeader>
+        </Card>
+      );
+    }
 
-  return (
-    <div>
-      {lois.map((loi, loiIndex) => {
-        const isEditMode = editMode[loiIndex];
-        const editedLoi = editedLois[loiIndex] || {};
+    return (
+      <div>
+        {lois.map((loi, loiIndex) => {
+          const isEditMode = editMode[loiIndex];
+          const editedLoi = editedLois[loiIndex] || {};
 
-        return (
-          !hiddenCards[loiIndex] && (
-            <div
-              key={`loi-${loiIndex}`}
-              style={{ position: "relative", marginBottom: 30 }}
-            >
-              <Card>
-                <CardHeader>
-                  <Heading size="lg">Loi {loi.loi}</Heading>
-                  {!isEditMode && (
-                    <Button
-                      size="sm"
-                      style={copyButtonStyle}
-                      onClick={() =>
-                        setHiddenCards((prevHiddenCards) => [
-                          ...prevHiddenCards.slice(0, loiIndex),
-                          true,
-                          ...prevHiddenCards.slice(loiIndex + 1),
-                        ])
+          return (
+            !hiddenCards[loiIndex] && (
+              <div
+                key={`loi-${loiIndex}`}
+                style={{ position: "relative", marginBottom: 30 }}
+              >
+                <Card>
+                  <CardHeader>
+                    <Heading size="lg">Loi {loi.loi}</Heading>
+                    {!isEditMode && (
+                      <Button
+                        size="sm"
+                        style={copyButtonStyle}
+                        onClick={() =>
+                          setHiddenCards((prevHiddenCards) => [
+                            ...prevHiddenCards.slice(0, loiIndex),
+                            true,
+                            ...prevHiddenCards.slice(loiIndex + 1),
+                          ])
+                        }
+                      >
+                        {hiddenCards[loiIndex] ? "Show" : "Delete"}
+                      </Button>
+                    )}
+                  </CardHeader>
+                  <CardBody>
+                    {Object.keys(loi).map((articleKey) => {
+                      if (articleKey !== "loi") {
+                        const isEditable =
+                          isEditMode && editedLoi.hasOwnProperty(articleKey);
+                        const value = isEditable
+                          ? editedLoi[articleKey]
+                          : loi[articleKey];
+                        return (
+                          <Card
+                            key={`loi-${loiIndex}-section-${articleKey}`}
+                            style={{ marginBottom: 2 }}
+                          >
+                            <CardHeader>
+                              <Heading size="md">{articleKey}</Heading>
+                            </CardHeader>
+                            <CardBody>
+                              {isEditable ? (
+                                <Input
+                                  value={value}
+                                  onChange={(e) =>
+                                    handleInputChange(e, loiIndex, articleKey)
+                                  }
+                                />
+                              ) : (
+                                <>
+                                  <Editable defaultValue={value}>
+                                    <EditablePreview />
+                                    <EditableTextarea />
+                                  </Editable>
+                                </>
+                              )}
+                            </CardBody>
+                          </Card>
+                        );
                       }
-                    >
-                      {hiddenCards[loiIndex] ? "Show" : "Delete"}
-                    </Button>
-                  )}
-                </CardHeader>
-                <CardBody>
-                  {Object.keys(loi).map((articleKey) => {
-                    if (articleKey !== "loi") {
-                      const isEditable =
-                        isEditMode && editedLoi.hasOwnProperty(articleKey);
-                      const value = isEditable
-                        ? editedLoi[articleKey]
-                        : loi[articleKey];
-                      return (
-                        <Card
-                          key={`loi-${loiIndex}-section-${articleKey}`}
-                          style={{ marginBottom: 2 }}
-                        >
-                          <CardHeader>
-                            <Heading size="md">{articleKey}</Heading>
-                          </CardHeader>
-                          <CardBody>
-                            {isEditable ? (
-                              <Input
-                                value={value}
-                                onChange={(e) =>
-                                  handleInputChange(e, loiIndex, articleKey)
-                                }
-                              />
-                            ) : (
-                              <>
-                                <Editable defaultValue={value}>
-                                  <EditablePreview />
-                                  <EditableTextarea />
-                                </Editable>
-                              </>
-                            )}
-                          </CardBody>
-                        </Card>
-                      );
-                    }
-                    return null;
-                  })}
-                </CardBody>
-              </Card>
-            </div>
-          )
-        );
-      })}
-      {Object.keys(editMode).length > 0 && (
-        <HStack spacing={2} position="fixed" bottom={10} right={10}>
-          <Button style={cancelButtonStyle} onClick={handleCancelClick}>
-            Cancel
-          </Button>
-          <Button style={submitButtonStyle} onClick={handleSubmitClick}>
-            Submit
-          </Button>
-        </HStack>
-      )}
-    </div>
-  );
+                      return null;
+                    })}
+                  </CardBody>
+                </Card>
+              </div>
+            )
+          );
+        })}
+        {Object.keys(editMode).length > 0 && (
+          <HStack spacing={2} position="fixed" bottom={10} right={10}>
+            <Button style={cancelButtonStyle} onClick={handleCancelClick}>
+              Cancel
+            </Button>
+            <Button style={submitButtonStyle} onClick={handleSubmitClick}>
+              Submit
+            </Button>
+          </HStack>
+        )}
+      </div>
+    );
+  };
+  return <>{renderLois()}</>;
 };
 
 export default LoiCards;
