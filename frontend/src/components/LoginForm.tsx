@@ -67,7 +67,13 @@ function LoginForm() {
             />
             <label htmlFor="floatingPassword">Password</label>
           </div>
-          <button type="submit" style={{ display: "none" }}></button>
+          <button
+            type="submit"
+            className="btn btn-secondary ml-3"
+            style={{ flexBasis: "10%", marginTop: "15px" }}
+          >
+            Submit
+          </button>
         </form>
       </CardBody>
     </Card>
