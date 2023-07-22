@@ -188,7 +188,7 @@ def login_user():
     password = request.json["pass"]
 
     # Check if the username and password match in the database
-    user = adminDb.find_one({'username': username, 'password': password})
+    user = adminDb.find_one({'login': login, 'pass': password})
 
 
     if user is None:
@@ -199,10 +199,9 @@ def login_user():
     
     # session["user_id"] = user['_id']
 
-    return jsonify(user)
-    # {
-    #     "id": user.id,
-    #     "email": user.email
-    # }
+    return jsonify({
+        "id": user.id,
+        "email": user.email
+    })
 if __name__ == '__main__':
 	app.run(debug=True)

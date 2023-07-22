@@ -14,28 +14,41 @@ function LoginForm() {
       formRef.current!.submit();
       login = loginRef.current!.value;
       pass = passRef.current!.value;
-      console.log({
-        login: login,
-        pass: pass,
-      });
-    }
-    // fetch function to get data from Flask
-    fetch("http://127.0.0.1:5000/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/form-data",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        login: login,
-        pass: pass,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+      // console.log({
+      //   login: login,
+      //   pass: pass,
+      // });
+    
+      // fetch function to get data from Flask
+
+    
+
+        fetch("http://127.0.0.1:5000/login", {
+          method: "POST",
+          headers: {
+            Accept: "application/form-data",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          login: login,
+          pass: pass,
+        }),
+      }).then((res) => res.json())
+      .then((data)=>{
         console.log(data);
+        // code here //
+        if (data.error) {
+          alert("Error Password or Username"); /*displays error message*/
+        } else {
+          window.location.href = "/";
+        }
+      }).catch((err)=>{
+        console.log(err);
       });
-  };
+      
+      
+  }
+}
   // khasna nzido form hon bach nkhdmo entre key ana knt gail3ndha wajda ,
   // o password khalihli 3adi ana nhashih wla lhala yhashi booh lwa9t ma kain
   return (

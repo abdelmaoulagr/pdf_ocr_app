@@ -54,7 +54,7 @@ function DrawerExample() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/adminhome">
+                <a className="nav-link" href="/login">
                   Admin
                 </a>
               </li>
