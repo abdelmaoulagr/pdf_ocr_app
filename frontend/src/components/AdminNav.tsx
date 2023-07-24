@@ -16,6 +16,12 @@ function AdminDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
 
+  const logoutUser = async () => {
+    await fetch("http://127.0.0.1:5000/logout", {
+          method: "POST",
+      })
+    window.location.href = "/";
+  };
   return (
     <>
       <Button leftIcon={<AddIcon />} colorScheme="teal" onClick={onOpen}>
@@ -59,7 +65,7 @@ function AdminDrawer() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/login">
+                <a className="nav-link" href="/" onClick={logoutUser}>
                   Logout
                 </a>
               </li>

@@ -8,22 +8,45 @@ function LoginForm() {
   let login: string;
   let pass: string;
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      formRef.current!.submit();
-      login = loginRef.current!.value;
-      pass = passRef.current!.value;
-      // console.log({
-      //   login: login,
-      //   pass: pass,
-      // });
-    
-      // fetch function to get data from Flask
+  // const loginfun = async (login,pass) => {
+  //   await fetch("http://localhost:5000/login", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/form-data",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       login: login,
+  //         pass: pass
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       return data;
+  
+  //     });
+  // };
 
+  //   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    //     if (event.key === "Enter") {
+      //       event.preventDefault();
+//       formRef.current!.submit();
+//       login = loginRef.current!.value;
+//       pass = passRef.current!.value; 
+//       // console.log({
+//       //   login: login,
+//       //   pass: pass,
+//       // });
     
+//       // fetch function to get data from Flask
 
-        fetch("http://127.0.0.1:5000/login", {
+
+
+const handleAdd = async event => {
+  event.preventDefault();
+  login = loginRef.current!.value;
+  pass = passRef.current!.value; 
+      await fetch("http://127.0.0.1:5000/login", {
           method: "POST",
           headers: {
             Accept: "application/form-data",
@@ -35,20 +58,27 @@ function LoginForm() {
         }),
       }).then((res) => res.json())
       .then((data)=>{
-        console.log(data);
         // code here //
         if (data.error) {
           alert("Error Password or Username"); /*displays error message*/
         } else {
-          window.location.href = "/";
+          window.location.href = "/adminhome";
         }
+        console.log(data);
       }).catch((err)=>{
         console.log(err);
       });
+
+    
+
       
-      
-  }
+    
 }
+
+      
+      
+//   }
+// }
   // khasna nzido form hon bach nkhdmo entre key ana knt gail3ndha wajda ,
   // o password khalihli 3adi ana nhashih wla lhala yhashi booh lwa9t ma kain
   return (
@@ -65,7 +95,6 @@ function LoginForm() {
               id="floatingInput"
               placeholder="Login"
               ref={loginRef}
-              onKeyDown={handleKeyPress}
             />
             <label htmlFor="floatingInput">Login</label>
           </div>
@@ -76,7 +105,6 @@ function LoginForm() {
               id="floatingPassword"
               placeholder="Password"
               ref={passRef}
-              onKeyDown={handleKeyPress}
             />
             <label htmlFor="floatingPassword">Password</label>
           </div>
@@ -84,6 +112,7 @@ function LoginForm() {
             type="submit"
             className="btn btn-secondary ml-3"
             style={{ flexBasis: "10%", marginTop: "15px" }}
+            onClick={handleAdd}
           >
             Submit
           </button>

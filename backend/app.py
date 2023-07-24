@@ -1,7 +1,9 @@
 import codecs
 import json
 import re
+from bson import ObjectId
 from flask import Flask, request , jsonify,session
+from flask_session import Session
 from flask_cors import CORS , cross_origin
 import pymongo
 from pymongo import MongoClient
@@ -14,6 +16,7 @@ import getLoi as loi
 
 app = Flask(__name__)
 CORS(app , supports_credentials=True)
+# server_session=Session(app)
 
 
 
@@ -157,6 +160,19 @@ def ocr_loi():
 # Admin collection 
 adminDb = db.admin
 
+@app.route("/@me")
+def get_current_user():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+    
+    user = adminDb.find_one({'_id': ObjectId(user_id)})
+    return jsonify({
+        "firstName": user['firstName'],
+        "email": user['email']
+    }) 
+
 
 #Register Admin
 @app.route('/register',methods=['POST'])
@@ -197,11 +213,25 @@ def login_user():
     # if not user.passward:
     #     return jsonify({"error": "Unauthorized"}), 401
     
-    # session["user_id"] = user['_id']
-
+    session["user_id"] = str(user['_id'])
     return jsonify({
-        "id": user.id,
-        "email": user.email
+        "firstName": user['firstName'],
+        "email": user['email']
     })
+
+#logout
+@app.route("/logout", methods=["POST"])
+def logout_user():
+    session.pop("user_id")
+    print("logout")
+    return "200"
+
+
 if __name__ == '__main__':
-	app.run(debug=True)
+    # Quick test configuration. Please use proper Flask configuration options
+    # in production settings, and use a separate file or environment variables
+    # to manage the secret key!
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.run(debug=True)
+    # sess.init_app(app)
