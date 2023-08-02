@@ -1,6 +1,4 @@
-import codecs
 import json
-import re
 from bson import ObjectId
 from flask import Flask, request , jsonify,session
 from flask_session import Session
@@ -9,10 +7,6 @@ import pymongo
 from pymongo import MongoClient
 import getLoi as loi
 import base64
-# import getLoi as loi
-import getLoi as loi
-#import base64
-
 
 app = Flask(__name__)
 CORS(app , supports_credentials=True)

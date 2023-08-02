@@ -14,7 +14,7 @@ function AddLoi() {
   const handleRefresh = (isLoaded: any) => {
     if (isLoaded) {
       setRefreshKey((prevKey) => prevKey + 1);
-    }
+    }    
   };
   return (
     <>
@@ -30,7 +30,7 @@ function AddLoi() {
         <div className="main">
           <div className="child-1">
             {listOfIngredients.length != 0 ? (
-              <LoiCards key={refreshKey} lois={listOfIngredients[0]["data"]} />
+              <LoiCards key={refreshKey} lois={listOfIngredients} />
             ) : (
               <p>List is empty</p>
             )}
