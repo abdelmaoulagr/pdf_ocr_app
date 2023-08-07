@@ -1,10 +1,10 @@
 import json
+import os
 from bson import ObjectId
 from flask import Flask, request , jsonify,session
 from flask_session import Session
 from flask_cors import CORS , cross_origin
 import pymongo
-from pymongo import MongoClient
 import getLoi as loi
 import base64
 
@@ -18,10 +18,12 @@ client = pymongo.MongoClient('localhost', 27017)
 db = client.Lois
 loiDb = db.lois
 
+#path of ocr file in OS 
+full_path = os.path.join(os.path.dirname(__file__), "ocr_file/file_decoded.pdf")
 #OCR function
 def OCR():
     #applique OCR
-    text_loi=loi.clean_head(loi.pdf_to_text("/home/abdelmaoula/Documents/LP/Stage/pdf_ocr_app/file_decoded.pdf"))
+    text_loi=loi.clean_head(loi.pdf_to_text(full_path))
     #clean data
     loi_num=loi.Loi_num(text_loi)
     titre_loi=loi.Title_loi(text_loi,loi_num)
@@ -93,10 +95,10 @@ def ocr_file():
 
     # convert base64 to registerPDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
-    file_result = open('file_decoded.pdf', 'wb') 
+    file_result = open(full_path, 'wb') 
     file_result.write(file_64_decode)
 
-    file_data=loi.pdf_to_text("/home/abdelmaoula/Documents/LP/Stage/pdf_ocr_app/file_decoded.pdf")
+    file_data=loi.pdf_to_text(full_path)
     # file_text=loi.text_to_dict(file_data)
 
     # test
@@ -124,7 +126,7 @@ def ocr_loi():
 
     # convert base64 to registerPDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
-    file_result = open('file_decoded.pdf', 'wb') 
+    file_result = open(full_path, 'wb') 
     file_result.write(file_64_decode)
     loi_data=OCR() #get loi et les articles
 

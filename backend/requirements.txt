@@ -2,8 +2,5 @@ flask
 flask_session
 flask_cors
 pymongo
-json
-bson
-base64
 pytesseract
 pdf2image

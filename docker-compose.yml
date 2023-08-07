@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+
+    client:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        tty: true
+        environment:
+            PORT: 3000
+            PROXY_API: http://api:5000/
+        ports:
+            - "3000:3000"
+        volumes: 
+            - ./frontend:/app
+            - /app/node_modules
+        links:
+            - "api:api"
+        networks:
+            - frontend
+
+    mongodb:
+        image: mongo
+        ports:
+            - "2717:27017"
+        environment:
+            MONGO_INITDB_DATABASE: pdf_ocr_app
+        volumes:
+            - mongodb:/data/db
+        networks:
+            - backend
+
+    api:
+        build: 
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "5002:5001"
+        environment:
+            MONGODB_URI: mongodb://mongodb:27017/pdf_ocr_app
+            DB_URL: mongodb://db/app
+        volumes:
+            - appdata:/var/www/
+        depends_on: 
+            - mongodb
+        networks:
+            - frontend
+            - backend
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+volumes:
+    mongodb:
+        driver: local
+    appdata:
+        driver: local
