@@ -22,8 +22,10 @@ loiDb = db.lois
 full_path = os.path.join(os.path.dirname(__file__), "ocr_file/file_decoded.pdf")
 #OCR function
 def OCR():
-    #applique OCR
+
+    #apply OCR
     text_loi=loi.clean_head(loi.pdf_to_text(full_path))
+
     #clean data
     loi_num=loi.Loi_num(text_loi)
     titre_loi=loi.Title_loi(text_loi,loi_num)
@@ -107,7 +109,6 @@ def ocr_file():
     "data":
         {
         "title": "Le Contenu De Votre Fichier ",
-        # "text": "Introduction.\nLa notion de régression est fondamentale dans toutes les sciences appliquées puisqu’elle\nconsiste à analyser une relation entre deux variables quantitatives et à l’exploiter pour\nestimer la valeur inconnue de l’une à l’aide de la valeur connue de l’autre. Elle est\ncouramment utilisée dans les techniques de gestion et de commercialisation, pour\nexpliquer un chiffre d’affaires en fonction des dépenses, effectuer des prévisions des bénéfices, des ventes, etc ... ."
         "text": file_data
         }
         }
@@ -129,21 +130,6 @@ def ocr_loi():
     file_result = open(full_path, 'wb') 
     file_result.write(file_64_decode)
     loi_data=OCR() #get loi et les articles
-
-    # testing data
-    # loi_data={
-    # "data":[{"loi": "n\u00b0 80-21: portant cr\u00e9ation du Registre National Agricole",
-    #         "Article 1": "Il est cr\u00e9\u00e9 un Registre national num\u00e9rique d\u00e9nomm\u00e9\n\u00ab Registre National Agricole \u00bb, dont la gestion est confi\u00e9e\n\u00e0 l'Administration, et dans le cadre duquel s'effectue le\ntraitement des donn\u00e9es relatives aux exploitations agricoles,\n\u00e0 travers l'inscription, la collecte, la conservation, la mise \u00e0\njour et, le cas \u00e9ch\u00e9ant la modification desdites donn\u00e9es.", 
-    #         "Article 2": "Au sens de la pr\u00e9sente loi, on entend par :\n+ Exploitant agricole : Toute personne physique ou morale\nexer\u00e7ant une activit\u00e9 agricole dans une exploitation\nagricole et est charg\u00e9e de sa gestion. Elle est d\u00e9nomm\u00e9e\nci-apr\u00e8s par \u00ab exploitant \u00bb ;\n+ Exploitation agricole : Toute unit\u00e9 de production agricole,\nv\u00e9g\u00e9tale ou animale ou les deux \u00e0 la fois, comportant\nune ou plusieurs parcelles de terre partageant les m\u00eames\nmoyens de production. Cette unit\u00e9 peut ne pas \u00eatre li\u00e9e\n\u00e0 aucune parcelle de terrain."
-    #         },
-    #         # {
-
-    #         # }
-    #         ]
-    #     }
-
-
-
 
     response = app.response_class(
         response=json.dumps(loi_data),

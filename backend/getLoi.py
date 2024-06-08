@@ -3,7 +3,8 @@ import pytesseract
 
 def pdf_to_text(path):
     '''
-    This function convert image to text
+    This function convert pdf pages to images
+    and then apply the OCR on the images to extract the text
     '''
     img = pdf2image.convert_from_path(path)
     text=""
