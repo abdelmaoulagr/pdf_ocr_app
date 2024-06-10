@@ -1,7 +1,23 @@
 # OCR Law Extraction Web Application
 
+## Summary 
+
+- [Description](#Description)
+- [Project Overview](#Project-Overview)
+    - [User Roles](#User-Roles)
+    - [Features](#Features)
+- [ScreenShots](#ScreenShots)
+- [Installation](#Installation)
+    - [Prerequisites](#Prerequisites)
+    - [Clone the Repository](#Clone-the-Repository)
+    - [Backend Setup](#Backend-Setup)
+    - [Frontend Setup](#Frontend-Setup)
+    - [MongoDB Setup](#MongoDB-Setup)
+    - [Tesseract OCR Installation](#Tesseract-OCR-Installation)
+- [Technologies Used](#Technologies-Used)
+
 ## Description
-This project is a web application designed to apply Optical Character Recognition (OCR) on scanned PDF files to extract laws and their respective articles. The extracted information includes the law numbers, titles, and detailed articles, which are then cleaned and stored in a structured format within a MongoDB database. The application offers two main roles: User and Admin. Users can search for laws and articles and extract content from files, while Admins have the additional capabilities to add new laws via file uploads, manage existing laws and articles, and oversee other administrators.
+This project was developed as part of my internship. The objective was to create a web application that applies Optical Character Recognition (OCR) on scanned PDF files to extract laws and their respective articles. The extracted information includes law numbers, titles, and detailed articles, which are then cleaned and stored in a structured format within a MongoDB database. This application is designed to facilitate the management and search of legal documents for both users and administrators.
 
 ## Project Overview
 
@@ -19,11 +35,16 @@ This project is a web application designed to apply Optical Character Recognitio
 
 ## ScreenShots
 
-1. **Login Screen**
+1. **User Dashboard**
+![User Dashboard](screenshots/user_dashboard.png)
  
-2. **User Dashboard**
+2. **Extract Law**
+![Extract Law](screenshots/add_law.png)
 
-3. **Admin Panel**
+
+3. **Cleaning The extracted Data**(Explication)
+![Extract Law](screenshots/cleaning_data.png)
+
 
 
 ## Installation
@@ -87,7 +108,8 @@ Ensure MongoDB is running on your local machine or a remote server. Configure th
 
 Follow the installation instructions for Tesseract OCR based on your operating system from the official documentation: [Tesseract Installation](https://tesseract-ocr.github.io/)
 
-## Contributors
-
-- Abdelmaoula Elguarai (Ur github)
-- Omar Elkaouri ()
+## Technologies Used
+- **Languages**: HTML, CSS, JavaScript, TypeScript, Python
+- **Frontend Framework**: React with Chakra UI and Bootstrap
+- **Backend Framework**: Flask with libraries such as JSON, Base64, PyMongoDB, Pytesseract, pdf2image
+- **Database**: MongoDB

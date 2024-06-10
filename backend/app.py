@@ -10,10 +10,10 @@ import base64
 
 app = Flask(__name__)
 CORS(app , supports_credentials=True)
-# server_session=Session(app)
 
 
-
+#My Data Base is 'Lois'
+#And the collection is 'lois'
 client = pymongo.MongoClient('localhost', 27017)
 db = client.Lois
 loiDb = db.lois
@@ -52,12 +52,7 @@ def search_loi():
         
         # Get data from DB
         result=loiDb.find({},{'_id':0})
-        # "$text": {"$search": searchText}
-
-
-        
-        # searchData variable just for testing your frontend
-        
+                
         # Get articles who contains searchText
         searchData=[]
         for doc in result:
@@ -68,10 +63,12 @@ def search_loi():
                     matching_fields[field] = value
             if len(matching_fields)==1: continue
             searchData.append(matching_fields)
-        
+        #SearchData array contain the search result
+        #The Law doesn't exist
         errorData=[{
             "loi":"pas trouvé"
         }]
+        # if searchData array is empty, send erroData
         if  len(searchData)==0:
                 response = app.response_class(
                 response=json.dumps(errorData),
@@ -79,6 +76,7 @@ def search_loi():
                 mimetype='application/json'
                 )
                 return response
+        #if not send the searchData array
         else: 
             response = app.response_class(
                 response=json.dumps(searchData),
@@ -101,9 +99,6 @@ def ocr_file():
     file_result.write(file_64_decode)
 
     file_data=loi.pdf_to_text(full_path)
-    # file_text=loi.text_to_dict(file_data)
-
-    # test
     file_text={
             
     "data":
@@ -120,16 +115,16 @@ def ocr_file():
     )
     return response
 
-# Ajouter Loi
+# Ajouter Loi /Add law
 @app.route('/addLoi', methods=['GET', 'POST'])
 def ocr_loi():
     file_64_encode=request.json['File']
 
-    # convert base64 to registerPDF file
+    # convert base64 to register PDF file
     file_64_decode = base64.b64decode(file_64_encode["File"]) 
     file_result = open(full_path, 'wb') 
     file_result.write(file_64_decode)
-    loi_data=OCR() #get loi et les articles
+    loi_data=OCR() #get law and their articles
 
     response = app.response_class(
         response=json.dumps(loi_data),
@@ -138,7 +133,7 @@ def ocr_loi():
     )
     return response
 
-
+# Change the DB Collection
 # Admin collection 
 adminDb = db.admin
 
@@ -169,15 +164,6 @@ def register_user():
     adminDb.insert_one(user_data)
 
     return jsonify({'message': 'User registered successfully'})
-    # return jsonify('From Flask',user_data)
-
-    
-    # session["user_id"] = new_user.id
-
-    # return jsonify({
-    #     "id": new_user.id,
-    #     "email": new_user.email
-    # })
 
 #login backend
 @app.route("/login", methods=["POST"])
@@ -191,9 +177,6 @@ def login_user():
 
     if user is None:
         return jsonify({"error": "Unauthorized"}), 401
-
-    # if not user.passward:
-    #     return jsonify({"error": "Unauthorized"}), 401
     
     session["user_id"] = str(user['_id'])
     return jsonify({
