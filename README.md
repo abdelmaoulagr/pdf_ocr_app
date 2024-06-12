@@ -18,7 +18,13 @@
 
 ## Description
 This project was developed as part of my internship. The objective was to create a web application that applies Optical Character Recognition (OCR) on scanned PDF files to extract laws and their respective articles. The extracted information includes law numbers, titles, and detailed articles, which are then cleaned and stored in a structured format within a MongoDB database. This application is designed to facilitate the management and search of legal documents for both users and administrators.
-
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" height="50"/> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="50" height="50" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="50" height="50"/>
+</p>
+        
 ## Project Overview
 
 ### User Roles
@@ -43,6 +49,7 @@ This project was developed as part of my internship. The objective was to create
 
 
 3. **Cleaning The extracted Data**(Explication)
+
 ![Extract Law](screenshots/cleaning_data.png)
 
 
