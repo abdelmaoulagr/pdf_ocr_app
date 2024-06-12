@@ -1,6 +1,6 @@
 # OCR Law Extraction Web Application
 
-## Summary 
+## Table of Contents 
 
 - [Description](#Description)
 - [Project Overview](#Project-Overview)
