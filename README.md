@@ -42,16 +42,21 @@ This project was developed as part of my internship. The objective was to create
 ## ScreenShots
 
 1. **User Dashboard**
+<!--
 ![User Dashboard](screenshots/user_dashboard.png)
+-->
+<img src="screenshots/user_dashboard.png"  width="700"/>
  
 2. **Extract Law**
-![Extract Law](screenshots/add_law.png)
+<img src="screenshots/add_law.png"  width="700"/>
 
 
 3. **Cleaning The extracted Data**(Explication)
-
-![Extract Law](screenshots/cleaning_data.png)
-
+ 
+<!--
+![Cleaning The extracted Data](screenshots/cleaning_data.png)
+-->
+<img src="screenshots/cleaning_data.png"  width="600" height="900"/>
 
 
 ## Installation
