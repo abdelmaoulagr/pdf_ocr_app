@@ -56,7 +56,7 @@ This project was developed as part of my internship. The objective was to create
 <!--
 ![Cleaning The extracted Data](screenshots/cleaning_data.png)
 -->
-<img src="screenshots/cleaning_data.png"  width="600" height="900"/>
+<img src="screenshots/cleaning_data.png"  width="600" height="800"/>
 
 
 ## Installation
